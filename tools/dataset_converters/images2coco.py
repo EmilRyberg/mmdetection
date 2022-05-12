@@ -93,8 +93,8 @@ def main():
     save_dir = os.path.join(args.img_path, '..', 'annotations')
     mmcv.mkdir_or_exist(save_dir)
     save_path = os.path.join(save_dir, args.out)
-    mmcv.dump(coco_info, save_path)
-    print(f'save json file: {save_path}')
+    mmcv.dump(coco_info, args.out)
+    print(f'save json file: {args.out}')
 
 
 if __name__ == '__main__':

@@ -253,7 +253,7 @@ class Shear:
                    magnitude,
                    direction='horizontal',
                    fill_val=255,
-                   interpolation='bilinear'):
+                   interpolation='nearest'):
         """Shear the segmentation maps."""
         for key in results.get('seg_fields', []):
             seg = results[key]
@@ -310,7 +310,7 @@ class Shear:
             magnitude,
             self.direction,
             fill_val=self.seg_ignore_label,
-            interpolation=self.interpolation)
+            interpolation="nearest")
         self._filter_invalid(results)
         return results
 
@@ -481,7 +481,7 @@ class Rotate:
         for key in results.get('seg_fields', []):
             seg = results[key].copy()
             results[key] = mmcv.imrotate(
-                seg, angle, center, scale,
+                seg, angle, center, scale, interpolation="nearest",
                 border_value=fill_val).astype(seg.dtype)
 
     def _filter_invalid(self, results, min_bbox_size=0):
@@ -663,7 +663,7 @@ class Translate:
         for key in results.get('seg_fields', []):
             seg = results[key].copy()
             results[key] = mmcv.imtranslate(seg, offset, direction,
-                                            fill_val).astype(seg.dtype)
+                                            fill_val, interpolation="nearest").astype(seg.dtype)
 
     def _filter_invalid(self, results, min_size=0):
         """Filter bboxes and masks too small or translated out of image."""
