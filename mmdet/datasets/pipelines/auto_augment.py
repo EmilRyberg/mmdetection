@@ -253,7 +253,7 @@ class Shear:
                    magnitude,
                    direction='horizontal',
                    fill_val=255,
-                   interpolation='nearest'):
+                   interpolation='billinear'):
         """Shear the segmentation maps."""
         for key in results.get('seg_fields', []):
             seg = results[key]
