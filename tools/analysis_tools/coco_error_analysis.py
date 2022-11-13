@@ -48,6 +48,7 @@ def makeplot(rs, ps, outDir, class_name, iou_type):
         plt.legend()
         # plt.show()
         fig.savefig(outDir + f'/{figure_title}.png')
+        fig.savefig(outDir + f'/{figure_title}.pdf')
         plt.close(fig)
 
 
